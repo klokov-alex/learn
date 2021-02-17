@@ -1,0 +1,10 @@
+- name: Setup timesync config
+  template:
+    src: timesyncd.conf.template
+    dest: /etc/systemd/timesyncd.conf
+  notify: run Timedatectl
+  when: ansible_service_mgr == "systemd"
+  
+- name: set Timezone
+  timezone: name=Asia/Almaty
+  when: ansible_service_mgr == "systemd"

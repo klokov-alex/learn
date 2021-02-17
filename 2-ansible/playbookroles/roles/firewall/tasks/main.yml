@@ -1,0 +1,17 @@
+
+
+- name: Firewall Allow web
+  ufw:
+      rule: allow
+      port: '80'
+      proto: tcp
+      
+- name: Firewall Allow SSH
+  ufw:
+      rule: allow
+      port: '22'
+      proto: tcp
+
+- name: Firewal Enable UFW
+  ufw:
+      state: enabled

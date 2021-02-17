@@ -1,0 +1,8 @@
+
+Create user
+ ansible all -m ansible.builtin.user -a "name=john comment=John" -b -K
+ 
+ 
+ 
+Run playbook
+ansible-playbook /etc/ansible/playbook1.yml --verbose -b -K

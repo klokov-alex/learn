@@ -1,0 +1,41 @@
+
+1 - Set hostname
+
+sudo hostnamectl set-hostname servername
+
+2 - Set network and DNS resolution (if required)
+
+
+3 - Set time sorurse
+
+sudo timedatectl status
+
+/etc/systemd/timesyncd.conf
+[Time]
+NTP=0.pool.ntp.org 1.pool.ntp.org
+FallbackNTP=ntp.ubuntu.com
+
+sudo systemctl restart systemd-timesyncd.service 
+sudo systemctl status systemd-timesyncd.service
+
+4 - Check/Set firewall 
+
+sudo ufw status
+sudo ufw allow ssh
+sudo ufw enable
+
+
+5 - Update/Upgrage packages
+
+sudo apt-get update
+sudo apt-get upgrade
+
+6 - Install SSH Server /Add SSH key /Secure SSH
+
+sudo apt-get install openssh-server
+
+vim /etc/ssh/sshd_config
+PermitRootLogin no
+PermitEmptyPasswords no
+
+ssh-copy-id remote_user@remote_server

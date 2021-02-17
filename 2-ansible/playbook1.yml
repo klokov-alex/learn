@@ -1,0 +1,21 @@
+- name: install open ssh server
+  hosts: all
+  become: yes
+  #remote_user: root
+
+  tasks:
+  - name: ensure openssh-server is at the latest version
+    yum:
+      name: openssh-server
+      state: latest
+  
+  - name: Create user james
+    ansible.builtin.user:
+      name: james
+      shell: /bin/bash
+    
+  - name: Remove the user 'john'
+    ansible.builtin.user:
+      name: john
+      state: absent
+      remove: yes

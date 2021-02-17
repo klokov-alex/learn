@@ -1,0 +1,28 @@
+- name: Configure all servers
+  hosts: all
+  become: yes
+  #remote_user: root
+  roles:
+   - ntp
+   - users
+   - firewall
+   - docker
+   
+  tasks:
+     - name: Update apt repo and cache
+       apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+       
+     - name: Upgrade all packages
+       apt: upgrade=yes force_apt_get=yes
+
+     - name: Test task
+       debug:
+         msg: "Hello Test Task"
+       tags: test
+   
+- name: Configure web servers
+  hosts: web
+  become: yes
+  roles:
+    - web
+

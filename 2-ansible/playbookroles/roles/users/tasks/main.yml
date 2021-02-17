@@ -1,0 +1,6 @@
+- name: Processing user account tasks
+  user:
+    name: "{{item.username}}"
+    state: "{{item.state}}"
+  loop: "{{users}}"
+  tags: test
